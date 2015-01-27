@@ -1,0 +1,89 @@
+<link rel="import" href="./bower_components/paper-button/paper-button.html">
+<link rel="import" href="./bower_components/core-animation/core-animation.html">
+<link rel="import" href="./bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="./bower_components/core-animated-pages/transitions/slide-from-right.html">
+<link rel="import" href="./bower_components/core-animated-pages/transitions/hero-transition.html">
+<link rel="import" href="./components/simple-slide.html">
+<link rel="import" href="./components/code-block.html">
+
+
+<polymer-element name="polymer-animations-presentation">
+    <template>
+        <style>
+            prism-js::shadow #codeviewer {
+                white-space:pre-wrap;
+            }
+            #pages {
+                overflow:hidden;
+            }
+        </style>
+        <core-animation id="float" fill="forwards" target="{{$.floater}}" duration="500">
+            <core-animation-keyframe>
+                <core-animation-prop name="transform" value="translateY(25%)"></core-animation-prop>
+                <core-animation-prop name="opacity" value="0"></core-animation-prop>
+            </core-animation-keyframe>
+
+            <core-animation-keyframe>
+                <core-animation-prop name="transform" value="translateY(0)"></core-animation-prop>
+                <core-animation-prop name="opacity" value="1"></core-animation-prop>
+            </core-animation-keyframe>
+        </core-animation>
+
+        <core-animated-pages on-click="{{next}}" id="pages"
+            transitions="slide-from-right hero-transition" fit>
+            <simple-slide heading="The Elements" background="#7E57C2">
+                <p>
+                    Bla bla bla
+                </p>
+            </simple-slide>
+            <simple-slide heading="The Elements 2" background="#42A5F5">
+                <p>
+                Bla bla bla <span hero hero-id="one">ELEMENTS</span>
+                </p>
+            </simple-slide>
+            <simple-slide headinghero="one" heading="The Elements 3" background="#EC407A">
+                <h3>Example:</h3>
+                <code-block source="/examples/example.html" escape='true'>
+                </code-block>
+                <div layout horizontal center-justified>
+                    <paper-button on-click="{{play}}" raised>Toggle Animation</paper-button>
+                </div>
+                <div id="floater" style="background:red; color:#fff;">SHIT</div>
+            </simple-slide>
+        </core-animated-pages>
+    </template>
+    <script>
+        Polymer('polymer-animations-presentation', {
+            prev: function () {
+                this.$.pages.selectPrevious();
+            },
+            next: function () {
+                this.$.pages.selectNext();
+            },
+            play: function () {
+                this.$.float.direction = this.$.float.direction === 'reverse' ?
+                    'normal' : 'reverse';
+                this.$.float.play();
+            },
+            attached: function (e) {
+                document.addEventListener('keydown', function (e) {
+                    var SPACE = 32,
+                        LEFT  = 37,
+                        UP    = 38,
+                        RIGHT = 39,
+                        DOWN  = 40;
+
+                    switch (e.keyCode) {
+                        case LEFT:
+                            this.prev();
+                        break;
+                        case SPACE:
+                        case RIGHT:
+                            this.next();
+                        break;
+                    }
+                }.bind(this));
+            }
+        });
+    </script>
+</polymer-element>

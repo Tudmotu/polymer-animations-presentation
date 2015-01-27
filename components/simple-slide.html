@@ -1,0 +1,36 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-shadow/paper-shadow.html">
+
+<polymer-element name="simple-slide" attributes="background heading headinghero" noscript>
+    <template>
+        <style>
+            :host {
+                display:block;
+            }
+            #canvas {
+                background:#fff;
+                height:80%;
+                width:90%;
+            }
+            article {
+                padding:1rem 1.5rem;
+            }
+        </style>
+
+        <section style="background:{{background}}" layout vertical center center-justified fit>
+            <!--<div layout vertical>-->
+                <paper-shadow id="canvas" z="2">
+                    <header hero?={{headinghero}} hero-id="{{headinghero}}" layout horizontal center-justified>
+                        <h1>{{heading}}</h1>
+                    </header>
+
+                    <article flex>
+                        <content></content>
+                    </article>
+                </paper-shadow>
+            <!--</div>-->
+        </section>
+    </template>
+    <script>
+    </script>
+</polymer-element>

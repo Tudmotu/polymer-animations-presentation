@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="code-block" attributes="source language escape">
+    <template>
+        <core-ajax
+            url="{{source}}"
+            handleAs="text"
+            response="{{content}}"
+            auto>
+        </core-ajax>
+
+        <prism-js language="{{language || sourceLanguage()}}"
+            linenumbers
+            inputValue="{{content || ''}}" escape?="{{escape}}">
+        </prism-js>
+    </template>
+    <script>
+        Polymer('code-block', {
+            sourceLanguage: function () {
+                var ext = this.source.replace(/.*\./, ''),
+                    exts = {
+                        html: 'markup',
+                        js: 'javascript',
+                        css: 'css'
+                    };
+                return exts[ext];
+            }
+        });
+    </script>
+</polymer-element>
