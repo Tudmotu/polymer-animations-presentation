@@ -2,14 +2,11 @@
 <link rel="import" href="../bower_components/paper-shadow/paper-shadow.html">
 <link href='http://fonts.googleapis.com/css?family=Bitter|Crete+Round|Open+Sans' rel='stylesheet' type='text/css'>
 
-<polymer-element name="simple-slide" attributes="background nobody noheader">
+<polymer-element name="simple-slide" attributes="nobody noheader">
     <template>
         <style>
             :host {
                 display:block;
-            }
-            #main {
-                background:#EC407A;
             }
             #canvas {
                 background:#fff;
@@ -39,6 +36,9 @@
                 font-size:42px;
                 overflow:auto;
             }
+            ::content p {
+                margin:0;
+            }
             ::content code-block {
                 font-size:20px;
             }
@@ -54,15 +54,17 @@
                 display:inline;
                 white-space:normal;
                 padding:2px;
+            }
+            ::content prism-js[inline]:not([large]) /deep/ code {
                 font-size:.875em;
             }
         </style>
 
-        <section id="main" style="background:{{background}}" layout vertical center center-justified fit>
+        <section id="main" style="background:{{getBackground()}}" layout vertical center center-justified fit>
             <paper-shadow id="canvas" z="2" layout vertical stretch
                 center-justified?="{{nobody}}">
                 <template if="{{!noheader}}">
-                    <header hero-id="{{headinghero}}" layout vertical center-justified>
+                    <header layout vertical center-justified>
                         <h1>
                             <content select="[heading]"></content>
                         </h1>
@@ -73,7 +75,7 @@
                 </template>
 
                 <template if="{{!nobody}}">
-                    <article flex layout vertical justified>
+                    <article flex layout vertical around-justified>
                         <content></content>
                     </article>
                 </template>
@@ -83,7 +85,26 @@
     <script>
         Polymer('simple-slide', {
             nobody: false,
-            noheader: false
+            noheader: false,
+            getBackground: function () {
+                var bgs = [
+                        '#EC407A',
+                        '#42A5F5',
+                        '#7E57C2',
+                        '#26C6DA',
+                        '#26A69A',
+                        '#66BB6A',
+                        '#FFCA28',
+                        '#607D8B',
+                        '#7CB342',
+                        '#5C6BC0',
+                        '#BA68C8',
+                        '#8D6E63'
+                    ],
+                    rand = Math.floor(Math.random() * (bgs.length - 1));
+
+                return bgs[rand];
+            }
         });
     </script>
 </polymer-element>
