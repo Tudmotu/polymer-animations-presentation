@@ -8,27 +8,19 @@
 
 <polymer-element name="slide-one" noscript>
     <template>
-        <simple-slide heading="The Elements" background="#7E57C2">
-        <h3>Example:</h3>
-
-            <code-block source="examples/example.html" escape='true'>
-            </code-block>
-
-            <div layout horizontal center-justified>
-                <paper-checkbox label="Toggle Element"
-                    checked?="[[false]]"
-                    checked="{{checked}}">
-                </paper-checkbox>
-            </div>
-
-            <collapsible-container id="collapser" opened?="{{checked}}">
-                <h3>Enter text of any height:</h3>
-                <paper-input-decorator>
-                    <paper-autogrow-textarea>
-                        <textarea></textarea>
-                    </paper-autogrow-textarea>
-                </paper-input-decorator>
-            </collapsible-container>
+        <style>
+            .emph {
+                color:rgb(61, 133, 198);
+            }
+        </style>
+        <simple-slide nobody>
+            <span heading>
+                <span>Introduction to</span><br>
+                <span class="emph">Polymer Animations</span>
+            </span>
+            <span subheading>
+                Weird, Horrible, Awesome
+            </span>
         </simple-slide>
     </template>
 </polymer-element>

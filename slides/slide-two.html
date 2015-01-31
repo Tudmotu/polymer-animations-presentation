@@ -3,10 +3,27 @@
 
 <polymer-element name="slide-two" noscript>
     <template>
-        <simple-slide heading="The Elements 2" background="#42A5F5">
-            <p>
-            Bla bla bla <span hero hero-id="one">ELEMENTS</span>
-            </p>
+        <simple-slide heading="The Elements" background="#7E57C2">
+        <h3>Example:</h3>
+
+            <code-block source="examples/example.html" escape='true'>
+            </code-block>
+
+            <div layout horizontal center-justified>
+                <paper-checkbox label="Toggle Element"
+                    checked?="[[false]]"
+                    checked="{{checked}}">
+                </paper-checkbox>
+            </div>
+
+            <collapsible-container id="collapser" opened?="{{checked}}">
+                <h3>Enter text of any height:</h3>
+                <paper-input-decorator>
+                    <paper-autogrow-textarea>
+                        <textarea></textarea>
+                    </paper-autogrow-textarea>
+                </paper-input-decorator>
+            </collapsible-container>
         </simple-slide>
     </template>
 </polymer-element>

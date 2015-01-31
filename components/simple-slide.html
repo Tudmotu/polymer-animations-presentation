@@ -1,36 +1,79 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/paper-shadow/paper-shadow.html">
+<link href='http://fonts.googleapis.com/css?family=Bitter|Crete+Round|Open+Sans' rel='stylesheet' type='text/css'>
 
-<polymer-element name="simple-slide" attributes="background heading headinghero" noscript>
+<polymer-element name="simple-slide" attributes="background nobody noheader">
     <template>
         <style>
             :host {
                 display:block;
             }
+            #main {
+                background:#EC407A;
+            }
             #canvas {
                 background:#fff;
-                height:80%;
-                width:90%;
+                height:60vw;
+                width:80vw;
+            }
+            header {
+                color:rgb(102, 102, 102);
+            }
+            h1, h2, h3 {
+                text-align:center;
+                font-weight:lighter;
+                margin:12px 0;
+            }
+            header > h1 {
+                font-family:"Crete Round";
+                font-size:72px;
+            }
+            header > h3 {
+                font-family:"Open Sans";
+                font-size:36px;
             }
             article {
                 padding:1rem 1.5rem;
+                font-family:Bitter;
+                color:rgb(19, 79, 92);
+                font-size:36px;
+                overflow:auto;
+            }
+            ::content code-block {
+                font-size:20px;
+            }
+            ::content code-block /deep/ pre,
+            ::content code-block /deep/ code {
+                white-space:pre-wrap;
             }
         </style>
 
-        <section style="background:{{background}}" layout vertical center center-justified fit>
-            <!--<div layout vertical>-->
-                <paper-shadow id="canvas" z="2">
-                    <header hero?={{headinghero}} hero-id="{{headinghero}}" layout horizontal center-justified>
-                        <h1>{{heading}}</h1>
+        <section id="main" style="background:{{background}}" layout vertical center center-justified fit>
+            <paper-shadow id="canvas" z="2" layout vertical center
+                center-justified?="{{nobody}}">
+                <template if="{{!noheader}}">
+                    <header hero-id="{{headinghero}}" layout vertical center-justified>
+                        <h1>
+                            <content select="[heading]"></content>
+                        </h1>
+                        <h3>
+                            <content select="[subheading]"></content>
+                        </h3>
                     </header>
+                </template>
 
+                <template if="{{!nobody}}">
                     <article flex>
                         <content></content>
                     </article>
-                </paper-shadow>
-            <!--</div>-->
+                </template>
+            </paper-shadow>
         </section>
     </template>
     <script>
+        Polymer('simple-slide', {
+            nobody: false,
+            noheader: false
+        });
     </script>
 </polymer-element>
