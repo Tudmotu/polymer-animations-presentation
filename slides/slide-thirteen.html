@@ -1,0 +1,29 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-thirteen" noscript>
+    <template>
+        <style>
+            b {
+                font-weight:normal;
+                font-family:monospace;
+                background:#ddd;
+                color:#666;
+            }
+            code-block /deep/ #codeviewer {
+                font-size:28px;
+            }
+            [heading] {
+                font-size:.75em;
+            }
+        </style>
+        <simple-slide>
+            <span heading>
+                Dynamic <b>.target</b>
+            </span>
+            <code-block source="examples/dynamic.html">
+            </code-block>
+        </simple-slide>
+    </template>
+</polymer-element>
