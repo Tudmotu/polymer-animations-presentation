@@ -1,0 +1,48 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-eleven">
+    <template>
+        <style>
+            #btn {
+                margin-bottom:24px;
+            }
+        </style>
+        <core-animation id="anim"
+            target="{{$.img}}" duration="1000" fill="forwards">
+
+            <core-animation-keyframe>
+                <core-animation-prop
+                    name="opacity" value="1">
+                </core-animation-prop>
+            </core-animation-keyframe>
+
+            <core-animation-keyframe>
+                <core-animation-prop
+                    name="opacity" value="0">
+                </core-animation-prop>
+            </core-animation-keyframe>
+        </core-animation>
+        <simple-slide>
+            <span heading>Demo: Fade-Out</span>
+            <section>
+                <div id="btn" layout horizontal center-justified>
+                    <paper-button on-click="{{play}}" raised>
+                        Fade this logo out!
+                    </paper-button>
+                </div>
+                <div id="img" layout horizontal center-justified>
+                    <img src="https://www.polymer-project.org/images/logos/p-logo.svg" />
+                </div>
+            </section>
+        </simple-slide>
+    </template>
+    <script>
+        Polymer('slide-eleven', {
+            play: function () {
+                this.$.anim.play();
+            }
+        });
+    </script>
+</polymer-element>
