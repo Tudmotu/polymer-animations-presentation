@@ -1,2 +1,6 @@
 bower_components/*
 node_modules/*
+bower.json
+gulpfile.js
+package.json
+README.md
