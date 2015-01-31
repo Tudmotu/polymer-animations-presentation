@@ -1,0 +1,13 @@
+<core-animation id="fadeout"
+  target="{{$.selector.selectedItem}}"
+  on-core-animation-finish="{{deleteItem}}"
+  duration="300">
+...
+</core-animation>
+
+<core-selector id="selector"
+  on-core-select="{{play}}">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</core-selector>

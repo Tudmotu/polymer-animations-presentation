@@ -1,0 +1,93 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../bower_components/core-selector/core-selector.html">
+<link rel="import" href="../bower_components/core-icon/core-icon.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-fourteen">
+    <template>
+        <style>
+            core-selector paper-button {
+                display:block;
+                font-size:36px;
+                width:50%;
+                margin-bottom:6px;
+            }
+            core-selector paper-button core-icon {
+                margin-left:16px;
+            }
+        </style>
+        <core-animation id="anim"
+            on-core-animation-finish="{{deleteItem}}"
+            target="{{$.selector.selectedItem}}" duration="500" fill="forwards">
+
+            <core-animation-keyframe>
+                <core-animation-prop
+                    name="opacity" value="1">
+                </core-animation-prop>
+            </core-animation-keyframe>
+
+            <core-animation-keyframe>
+                <core-animation-prop
+                    name="opacity" value="0">
+                </core-animation-prop>
+            </core-animation-keyframe>
+        </core-animation>
+
+
+        <simple-slide>
+            <span heading>Demo: Remove Item</span>
+            <p>Click To Remove:</p>
+            <core-selector id="selector"
+                on-core-select="{{play}}"
+                layout vertical center>
+                <template repeat="{{ item in items }}">
+                    <paper-button raised>
+                        <div layout horizontal center fit>
+                            <core-icon icon="{{item.icon}}"></core-icon>
+                            <span flex>{{item.name}}</span>
+                        </div>
+                    </paper-button>
+                </template>
+            </core-selector>
+        </simple-slide>
+    </template>
+    <script>
+        Polymer('slide-fourteen', {
+            deleteItem: function () {
+                var target = this.$.anim.target;
+                this.$.selector.selected = null;
+                this.$.selector.removeChild(target);
+            },
+            play: function (e, detail) {
+                if (detail.isSelected)
+                    this.$.anim.play();
+            },
+            ready: function () {
+                this.items = [
+                    {
+                        name: 'Star',
+                        icon: 'star'
+                    },
+                    {
+                        name: 'Q&A',
+                        icon: 'question-answer'
+                    },
+                    {
+                        name: 'Work',
+                        icon: 'work'
+                    },
+                    {
+                        name: 'Polymer',
+                        icon: 'polymer'
+                    },
+                    {
+                        name: 'Cart',
+                        icon: 'shopping-cart'
+                    }
+                ];
+            }
+        });
+    </script>
+</polymer-element>
