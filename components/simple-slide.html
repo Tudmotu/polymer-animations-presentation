@@ -36,7 +36,7 @@
                 padding:1rem 1.5rem;
                 font-family:Bitter;
                 color:rgb(19, 79, 92);
-                font-size:36px;
+                font-size:42px;
                 overflow:auto;
             }
             ::content code-block {
@@ -46,10 +46,20 @@
             ::content code-block /deep/ code {
                 white-space:pre-wrap;
             }
+            ::content prism-js[inline] {
+                display:inline;
+            }
+            ::content prism-js[inline] /deep/ pre,
+            ::content prism-js[inline] /deep/ code {
+                display:inline;
+                white-space:normal;
+                padding:2px;
+                font-size:.875em;
+            }
         </style>
 
         <section id="main" style="background:{{background}}" layout vertical center center-justified fit>
-            <paper-shadow id="canvas" z="2" layout vertical center
+            <paper-shadow id="canvas" z="2" layout vertical stretch
                 center-justified?="{{nobody}}">
                 <template if="{{!noheader}}">
                     <header hero-id="{{headinghero}}" layout vertical center-justified>
@@ -63,7 +73,7 @@
                 </template>
 
                 <template if="{{!nobody}}">
-                    <article flex>
+                    <article flex layout vertical justified>
                         <content></content>
                     </article>
                 </template>
