@@ -1,3 +1,4 @@
+<link rel="import" href="./bower_components/core-icon/core-icon.html">
 <link rel="import" href="./bower_components/core-animation/core-animation.html">
 <link rel="import" href="./bower_components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="./bower_components/core-animated-pages/transitions/slide-from-right.html">
@@ -19,8 +20,40 @@
                 color:#fff;
                 padding:.5rem;
             }
+            .aside {
+                position:absolute;
+                top:0;
+                bottom:0;
+                color:#fff;
+                z-index:1;
+            }
+            .aside core-icon {
+                width:64px;
+                height:64px;
+            }
+            .aside.left {
+                left:0;
+            }
+            .aside.right {
+                right:0;
+            }
+            footer {
+                position:absolute;
+                bottom:0;
+                left:0;
+                right:0;
+                font-size:36px;
+                padding-bottom:16px;
+                font-family:"Open Sans";
+                font-weight:bold;
+                color:#fff;
+            }
         </style>
 
+        <aside class="aside left" layout vertical center-justified
+            on-click="{{prev}}">
+            <core-icon icon="arrow-back"></core-icon>
+        </aside>
         <core-animated-pages id="pages"
             transitions="slide-from-right hero-transition" fit>
 
@@ -33,6 +66,15 @@
             <slide-seven></slide-seven>
             <slide-eight></slide-eight>
         </core-animated-pages>
+        <aside class="aside right" layout vertical center-justified
+            on-click="{{next}}">
+            <core-icon icon="arrow-forward"></core-icon>
+        </aside>
+        <footer layout horizontal center-justified>
+            <span>{{$.pages.selectedIndex + 1}}</span>
+            <span>/</span>
+            <span>{{$.pages.items.length}}</span>
+        </footer>
     </template>
     <script>
         Polymer('polymer-animations-presentation', {
