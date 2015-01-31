@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-autogrow-textarea.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/collapsible-container.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-one" noscript>
+    <template>
+        <simple-slide heading="The Elements" background="#7E57C2">
+        <h3>Example:</h3>
+
+            <code-block source="examples/example.html" escape='true'>
+            </code-block>
+
+            <div layout horizontal center-justified>
+                <paper-checkbox label="Toggle Element"
+                    checked?="[[false]]"
+                    checked="{{checked}}">
+                </paper-checkbox>
+            </div>
+
+            <collapsible-container id="collapser" opened?="{{checked}}">
+                <h3>Enter text of any height:</h3>
+                <paper-input-decorator>
+                    <paper-autogrow-textarea>
+                        <textarea></textarea>
+                    </paper-autogrow-textarea>
+                </paper-input-decorator>
+            </collapsible-container>
+        </simple-slide>
+    </template>
+</polymer-element>

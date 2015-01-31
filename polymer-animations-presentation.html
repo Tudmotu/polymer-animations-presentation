@@ -1,13 +1,8 @@
-<link rel="import" href="./bower_components/paper-button/paper-button.html">
 <link rel="import" href="./bower_components/core-animation/core-animation.html">
 <link rel="import" href="./bower_components/core-animated-pages/core-animated-pages.html">
 <link rel="import" href="./bower_components/core-animated-pages/transitions/slide-from-right.html">
 <link rel="import" href="./bower_components/core-animated-pages/transitions/hero-transition.html">
-<link rel="import" href="./bower_components/paper-input/paper-input.html">
-<link rel="import" href="./bower_components/paper-input/paper-autogrow-textarea.html">
-<link rel="import" href="./components/code-block.html">
-<link rel="import" href="./components/collapsible-container.html">
-<link rel="import" href="./components/simple-slide.html">
+<link rel="import" href="./slides/slides.html">
 
 
 <polymer-element name="polymer-animations-presentation">
@@ -28,32 +23,10 @@
 
         <core-animated-pages id="pages"
             transitions="slide-from-right hero-transition" fit>
-            <simple-slide heading="The Elements" background="#7E57C2">
-                <h3>Example:</h3>
-                <code-block source="examples/example.html" escape='true'>
-                </code-block>
-                <div layout horizontal center-justified>
-                    <paper-button on-click="{{play}}" raised>Toggle Animation</paper-button>
-                </div>
 
-                <collapsible-container id="collapser">
-                        <paper-input-decorator>
-                            <paper-autogrow-textarea>
-                                <textarea></textarea>
-                            </paper-autogrow-textarea>
-                        </paper-input-decorator>
-                </collapsible-container>
-            </simple-slide>
-            <simple-slide heading="The Elements 2" background="#42A5F5">
-                <p>
-                Bla bla bla <span hero hero-id="one">ELEMENTS</span>
-                </p>
-            </simple-slide>
-            <simple-slide headinghero="one" heading="The Elements 3" background="#EC407A">
-                <p>
-                    Bla bla bla
-                </p>
-            </simple-slide>
+            <slide-one></slide-one>
+            <slide-two></slide-two>
+            <slide-three></slide-three>
         </core-animated-pages>
     </template>
     <script>
