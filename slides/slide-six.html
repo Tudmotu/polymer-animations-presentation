@@ -1,16 +1,14 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
 <link rel="import" href="../components/code-block.html">
 <link rel="import" href="../components/simple-slide.html">
 
-<polymer-element name="slide-two" noscript>
+<polymer-element name="slide-six" noscript>
     <template>
-        <style>
-            .emph {
-                color:rgb(142, 124, 195);
-            }
-        </style>
         <simple-slide nobody>
             <span heading>
-                A bit about <span class="emph">Polymer</span>
+                <prism-js language="markup" inline large>
+                    &lt;core-animation/&gt;
+                </prism-js>
             </span>
         </simple-slide>
     </template>

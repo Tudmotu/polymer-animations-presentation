@@ -1,0 +1,23 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-four" noscript>
+    <template>
+        <style>
+            code-block /deep/ #codeviewer {
+                font-size:28px;
+            }
+        </style>
+        <simple-slide>
+            <span heading>
+                Example:
+                <prism-js language="markup" inline>
+                    &lt;core-ajax/&gt;
+                </prism-js>
+            </span>
+            <code-block source="examples/core-ajax.html">
+            </code-block>
+        </simple-slide>
+    </template>
+</polymer-element>

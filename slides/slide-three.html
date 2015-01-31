@@ -3,10 +3,19 @@
 
 <polymer-element name="slide-three" noscript>
     <template>
-            <simple-slide headinghero="one" heading="The Elements 3" background="#42A5F5">
-                <p>
-                    Bla bla bla
-                </p>
-            </simple-slide>
+        <style>
+            .emph {
+                color:rgb(142, 124, 195);
+            }
+        </style>
+        <simple-slide>
+            <span heading>
+                About <span class="emph">Polymer</span>
+            </span>
+
+            <p>"Everything is an Element"</p>
+            <p>Even if it has no visual meaning</p>
+            <p>Custom Elements are modules</p>
+        </simple-slide>
     </template>
 </polymer-element>
