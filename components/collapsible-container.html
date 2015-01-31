@@ -9,10 +9,10 @@
         </style>
 
         <core-animation id="anim"
-            on-core-animation-finish="{{animationEnd}}"
+            on-core-animation-finish="{{hideIfClosed}}"
             direction="{{opened ? 'reverse' : 'normal' }}" duration="{{duration}}">
             <core-animation-keyframe>
-                <core-animation-prop name="{{cssProp}}" id="anim_start">
+                <core-animation-prop name="{{cssProp}}" id="initial">
                 </core-animation-prop>
             </core-animation-keyframe>
 
@@ -22,36 +22,43 @@
             </core-animation-keyframe>
         </core-animation>
 
-        <content></content>
+        <div id="content"><content></content></div>
     </template>
 
     <script>
         Polymer('collapsible-container', {
-            dim: 'height',
-            duration: 350,
-            opened: true,
+            publish: {
+                dim: 'height',
+                duration: 350,
+                opened: {
+                    value: false,
+                    reflect: true
+                }
+            },
             computed: {
                 cssProp: 'dim === "width" ? "width" : "height"'
             },
             getSize: function () {
-                return this.getBoundingClientRect()[this.cssProp];
+                return this.$.content.getBoundingClientRect()[this.cssProp];
 //                return getComputedStyle(this)[this.cssProp];
             },
             openedChanged: function (oldVal, newVal) {
-                if (newVal === false)
-                    this.$.anim_start.value = this.getSize();
-                else
+                if (newVal === true)
                     this.hidden = false;
 
+                this.$.initial.value = this.getSize();
                 this.$.anim.target = this;
                 this.$.anim.play();
             },
-            animationEnd: function () {
+            hideIfClosed: function () {
                 if (!this.opened)
                     this.hidden = true;
             },
             toggle: function () {
                 this.opened = !this.opened;
+            },
+            ready: function () {
+                this.hideIfClosed();
             }
         });
     </script>
