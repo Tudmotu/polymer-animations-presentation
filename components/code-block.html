@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/prism-js/prism-js.html">
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+<script src="../bower_components/he/he.js"></script>
 
 <polymer-element name="code-block" attributes="source language escape">
     <template>
@@ -10,12 +11,25 @@
             auto>
         </core-ajax>
 
-        <prism-js language="{{language || sourceLanguage()}}"
-            inputValue="{{content || ''}}" escape?="{{escape}}">
+        <prism-js id="code" language="{{language || sourceLanguage()}}">
         </prism-js>
     </template>
     <script>
         Polymer('code-block', {
+            escape: false,
+            contentChanged: function (oldVal, newVal) {
+                this.$.code.inputValue = this.escapeContent(newVal);
+            },
+            escapeContent: function (content) {
+                if (this.isEscaped())
+                    return he.encode(content);
+                else
+                    return content;
+            },
+            isEscaped: function () {
+                var val = (this.language === 'markup' || this.escape);
+                return val.toString();
+            },
             sourceLanguage: function () {
                 var ext = this.source.replace(/.*\./, ''),
                     exts = {
