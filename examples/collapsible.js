@@ -5,10 +5,7 @@ Polymer('collapsible-container', {
         return this.$.content.clientHeight;
     },
     openedChanged: function (oldVal, newVal) {
-        if (newVal === true)
-            this.hidden = false;
-
-        this.$.initial.value = this.getSize();
+        this.$.full.value = this.getSize();
         this.$.anim.target = this;
         this.$.anim.play();
     },
