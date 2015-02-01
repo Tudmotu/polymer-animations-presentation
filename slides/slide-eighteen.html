@@ -2,21 +2,18 @@
 <link rel="import" href="../components/code-block.html">
 <link rel="import" href="../components/simple-slide.html">
 
-<polymer-element name="slide-thirteen" noscript>
+<polymer-element name="slide-eighteen" noscript>
     <template>
         <style>
-            b {
-                font-weight:normal;
-                font-family:monospace;
-                background:#ddd;
-                color:#666;
+            code-block /deep/ #codeviewer {
+                font-size:22px;
             }
-            [heading] {
-                font-size:.75em;
+            code-block /deep/ pre {
+                padding:6px !important;
             }
         </style>
         <simple-slide noheader>
-            <code-block source="examples/dynamic.html">
+            <code-block source="examples/collapsible.js">
             </code-block>
         </simple-slide>
     </template>
