@@ -1,0 +1,17 @@
+<link rel="import" href="../bower_components/prism-js/prism-js.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-seventeen" noscript>
+    <template>
+        <style>
+            code-block /deep/ #codeviewer {
+                font-size:22px;
+            }
+        </style>
+        <simple-slide noheader>
+            <code-block source="examples/collapsible.html">
+            </code-block>
+        </simple-slide>
+    </template>
+</polymer-element>
