@@ -10,14 +10,14 @@
 
         <core-animation id="anim"
             on-core-animation-finish="{{hideIfClosed}}"
-            direction="{{opened ? 'reverse' : 'normal' }}" duration="{{duration}}">
+            direction="{{opened ? 'normal' : 'reverse' }}" duration="{{duration}}">
             <core-animation-keyframe>
-                <core-animation-prop name="{{cssProp}}" id="initial">
+                <core-animation-prop name="{{cssProp}}" value="0">
                 </core-animation-prop>
             </core-animation-keyframe>
 
             <core-animation-keyframe>
-                <core-animation-prop name="{{cssProp}}" value="0">
+                <core-animation-prop name="{{cssProp}}" id="full">
                 </core-animation-prop>
             </core-animation-keyframe>
         </core-animation>
@@ -45,7 +45,7 @@
                 if (newVal === true)
                     this.hidden = false;
 
-                this.$.initial.value = this.getSize();
+                this.$.full.value = this.getSize();
                 this.$.anim.target = this;
                 this.$.anim.play();
             },
