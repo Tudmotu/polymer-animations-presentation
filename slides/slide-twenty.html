@@ -33,16 +33,24 @@
             paper-shadow > * {
                 padding:12px;
             }
+            paper-checkbox::shadow #checkboxContainer {
+                display:none;
+            }
+            paper-button::shadow > .button-content {
+                padding:12px;
+            }
         </style>
         <simple-slide>
             <span heading>Demo</span>
 
             <section layout vertical center start-justified flex>
                 <div layout horizontal center-justified>
-                    <paper-checkbox label="Toggle Element"
-                        checked?="[[false]]"
-                        checked="{{checked}}">
-                    </paper-checkbox>
+                    <paper-button raised>
+                        <paper-checkbox label="Toggle Element"
+                            checked?="[[true]]"
+                            checked="{{checked}}">
+                        </paper-checkbox>
+                    </paper-button>
                 </div>
 
                 <collapsible-container id="collapser" opened?="{{checked}}">
