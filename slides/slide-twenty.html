@@ -12,17 +12,31 @@
                 margin-top:24px;
             }
             paper-shadow {
+                /*
                 background:#558B2F;
+                */
+                background:#C8E6C9;
                 margin:12px;
             }
             paper-shadow > div {
+                /*
                 color:#CCFF90;
+                */
             }
             paper-shadow > paper-input-decorator {
+                /*
                 color:#C8E6C9;
+                */
                 font-family:sans-serif;
+                padding-top:0;
             }
             paper-shadow > * {
+                padding:12px;
+            }
+            paper-checkbox::shadow #checkboxContainer {
+                display:none;
+            }
+            paper-button::shadow > .button-content {
                 padding:12px;
             }
         </style>
@@ -31,14 +45,16 @@
 
             <section layout vertical center start-justified flex>
                 <div layout horizontal center-justified>
-                    <paper-checkbox label="Toggle Element"
-                        checked?="[[false]]"
-                        checked="{{checked}}">
-                    </paper-checkbox>
+                    <paper-button raised>
+                        <paper-checkbox label="Toggle Element"
+                            checked?="[[true]]"
+                            checked="{{checked}}">
+                        </paper-checkbox>
+                    </paper-button>
                 </div>
 
                 <collapsible-container id="collapser" opened?="{{checked}}">
-                    <paper-shadow z="1">
+                    <paper-shadow z="2">
                         <div>Enter text of any height:</div>
                         <paper-input-decorator>
                             <paper-autogrow-textarea>
