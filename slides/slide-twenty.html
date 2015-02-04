@@ -12,15 +12,23 @@
                 margin-top:24px;
             }
             paper-shadow {
+                /*
                 background:#558B2F;
+                */
+                background:#C8E6C9;
                 margin:12px;
             }
             paper-shadow > div {
+                /*
                 color:#CCFF90;
+                */
             }
             paper-shadow > paper-input-decorator {
+                /*
                 color:#C8E6C9;
+                */
                 font-family:sans-serif;
+                padding-top:0;
             }
             paper-shadow > * {
                 padding:12px;
@@ -38,7 +46,7 @@
                 </div>
 
                 <collapsible-container id="collapser" opened?="{{checked}}">
-                    <paper-shadow z="1">
+                    <paper-shadow z="2">
                         <div>Enter text of any height:</div>
                         <paper-input-decorator>
                             <paper-autogrow-textarea>
