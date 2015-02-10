@@ -1,17 +1,17 @@
-<core-animation id="anim"
-  direction="{{opened ? 'normal' : 'reverse' }}"
-  duration="{{duration}}">
+<template>
+<core-animation id="anim" duration="{{duration}}"
+  direction="{{opened ? 'normal' : 'reverse' }}">
 
   <core-animation-keyframe>
-    <core-animation-prop
-      name="height" value="0">
+    <core-animation-prop name="height" value="0">
     </core-animation-prop>
   </core-animation-keyframe>
+
   <core-animation-keyframe>
-    <core-animation-prop
-      name="height" id="full">
+    <core-animation-prop name="height" id="full">
     </core-animation-prop>
   </core-animation-keyframe>
 </core-animation>
 
 <div id="content"><content></content></div>
+</template>

@@ -2,8 +2,18 @@
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
 <script src="../bower_components/he/he.js"></script>
 
-<polymer-element name="code-block" attributes="source language escape">
+<polymer-element name="code-block" attributes="source language escape segments">
     <template>
+        <style>
+            core-selector .core-selected::shadow pre {
+                background:rgba(168, 79, 79, 0.2);
+                /*background:rgba(22, 45, 160, 0.2);*/
+            }
+            core-selector prism-js:not(:last-child):not(:first-child)::shadow pre {
+                padding-top:.25em;
+                padding-bottom:.25em;
+            }
+        </style>
         <core-ajax
             url="{{source}}"
             handleAs="text"
@@ -11,14 +21,46 @@
             auto>
         </core-ajax>
 
-        <prism-js id="code" language="{{language || sourceLanguage()}}">
-        </prism-js>
+        <core-selector>
+        <template repeat="{{ piece in contentSegments }}">
+            <prism-js language="{{language || sourceLanguage()}}">{{piece}}</prism-js>
+        </template>
+        </core-selector>
+
     </template>
     <script>
         Polymer('code-block', {
             escape: false,
+            segments: '',
+            contentSegments: null,
             contentChanged: function (oldVal, newVal) {
-                this.$.code.inputValue = this.escapeContent(newVal);
+                var that = this,
+                    segments = this.segments && this.segments.split(','),
+                    lines = newVal && newVal.replace(/\n$/, '').split('\n');
+
+                if (!segments) {
+                    this.contentSegments = [newVal];
+                    return;
+                }
+
+                if (!lines || lines.length <= 1) {
+                    this.contentSegments = lines;
+                    return;
+                }
+
+                this.contentSegments = [];
+                segments.map(function (str){
+                    return parseInt(str, 10);
+                }).forEach(function (end, i, arr) {
+                    var start = i === 0 ? 0 : arr[i - 1],
+                        range = lines.slice(start, end);
+                    that.contentSegments.push(range.join('\n'));
+
+                    if (i === arr.length - 1)
+                        that.contentSegments.push(
+                            lines.slice(end).join('\n')
+                        );
+                });
             },
             escapeContent: function (content) {
                 if (this.isEscaped())
