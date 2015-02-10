@@ -1,0 +1,46 @@
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-about-me" noscript>
+    <template>
+        <style>
+            .smaller {
+                font-size:.66em;
+            }
+            .img {
+                border-radius:50%;
+                border:solid 5px rgb(102, 102, 102);
+                max-height:240px;
+            }
+            a {
+                padding-left:.5em;
+                color:rgb(19, 79, 92);
+                text-decoration:none;
+            }
+            simple-slide::shadow article {
+                padding-top:0;
+            }
+        </style>
+        <simple-slide>
+            <span heading>
+                Yotam Bar-On
+            </span>
+
+            <p layout vertical center>
+                <img class="img" src="../assets/img.jpg" />
+            </p>
+            <p class="smaller" layout horizontal center center-justified>
+                <img class="icon" src="../assets/github.svg" />
+                <a href="https://github.com/Tudmotu">
+                    github.com/Tudmotu
+                </a>
+            </p>
+            <p class="smaller" layout horizontal center center-justified>
+                <img class="icon" src="../assets/linkedin.png" />
+                <a href="https://www.linkedin.com/profile/view?id=181601182">
+                    linkedin.com/profile/view?id=181601182
+                </a>
+            </p>
+        </simple-slide>
+    </template>
+</polymer-element>
