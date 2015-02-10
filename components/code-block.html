@@ -2,8 +2,17 @@
 <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
 <script src="../bower_components/he/he.js"></script>
 
-<polymer-element name="code-block" attributes="source language escape">
+<polymer-element name="code-block" extends="prism-js" attributes="source language escape">
     <template>
+        <style>
+            :host /deep/ .line-highlight {
+                margin-top:.25em;
+            }
+            :host /deep/ .line-highlight:before,
+            :host /deep/ .line-highlight:after {
+                display:none;
+            }
+        </style>
         <core-ajax
             url="{{source}}"
             handleAs="text"
@@ -11,14 +20,30 @@
             auto>
         </core-ajax>
 
-        <prism-js id="code" language="{{language || sourceLanguage()}}">
-        </prism-js>
+        <shadow></shadow>
     </template>
     <script>
         Polymer('code-block', {
             escape: false,
+            computed: {
+                language: 'sourceLanguage()'
+            },
+            /**
+             * Override injectStylesheet
+             */
+            injectStylesheet: function (src) {
+                if (src.length > 0) {
+                    var link = document.createElement('link');
+                    src = '../bower_components/prism-js/' + src;
+                    link.type = 'text/css';
+                    link.rel = 'stylesheet';
+                    link.href = src;
+                    this.shadowRoots['prism-js'].appendChild(link);
+                    this.element.convertSheetsToStyles(this.shadowRoots['prism-js']);
+                }
+            },
             contentChanged: function (oldVal, newVal) {
-                this.$.code.inputValue = this.escapeContent(newVal);
+                this.inputValue = this.escapeContent(newVal);
             },
             escapeContent: function (content) {
                 if (this.isEscaped())
