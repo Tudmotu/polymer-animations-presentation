@@ -1,0 +1,91 @@
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-shadow/paper-shadow.html">
+<link rel="import" href="../components/code-block.html">
+<link rel="import" href="../components/simple-slide.html">
+
+<polymer-element name="slide-accordion-demo" noscript>
+    <template>
+        <style>
+            paper-input-decorator {
+                padding-top:0;
+            }
+            paper-checkbox::shadow #checkboxContainer {
+                display:none;
+            }
+            paper-button::shadow > .button-content {
+                padding:12px;
+            }
+            core-selector > div {
+                font-size:28px;
+                color:#fff;
+            }
+            paper-input-decorator /deep/ .unfocused-underline,
+            paper-input-decorator /deep/ .focused-underline {
+                background-color:#A7FFEB;
+            }
+            .entry,
+            paper-input-decorator,
+            core-selector > div > label {
+                padding:.25em;
+            }
+            core-selector > div > label {
+                display:block;
+            }
+            core-selector > div:nth-child(1) > label {
+                background:#B71C1C;
+            }
+            core-selector > div:nth-child(1) > collapsible-container {
+                background:#D32F2F;
+            }
+            core-selector > div:nth-child(2) > label {
+                background:#283593;
+            }
+            core-selector > div:nth-child(2) > collapsible-container {
+                background:#7986CB;
+            }
+            core-selector > div:nth-child(3) > label {
+                background:#00695C;
+            }
+            core-selector > div:nth-child(3) > collapsible-container {
+                background:#009688;
+            }
+            core-selector > div {
+                font-size:24px;
+                width:65%;
+            }
+        </style>
+        <simple-slide>
+            <span heading>Accordion Menu</span>
+
+            <core-selector selectedIndex="{{idx}}" layout vertical center start-justified flex>
+                <div>
+                    <label>Menu 1</label>
+                    <collapsible-container opened?="{{idx === 0}}">
+                        <div class="entry">Option 1</div>
+                        <div class="entry">Option 2</div>
+                        <div class="entry">Option 3</div>
+                        <div class="entry">Option 4</div>
+                    </collapsible-container>
+                </div>
+                <div>
+                    <label>Menu 2</label>
+                    <collapsible-container opened?="{{idx === 1}}">
+                        <div class="entry">Option 1</div>
+                        <div class="entry">Option 2</div>
+                    </collapsible-container>
+                </div>
+                <div>
+                    <label>Notes</label>
+                    <collapsible-container opened?="{{idx === 2}}">
+                    <div class="entry">Enter text:</div>
+                        <paper-input-decorator>
+                            <paper-autogrow-textarea>
+                                <textarea></textarea>
+                            </paper-autogrow-textarea>
+                        </paper-input-decorator>
+                    </collapsible-container>
+                </div>
+            </core-selector>
+        </simple-slide>
+    </template>
+</polymer-element>
